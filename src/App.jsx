@@ -11,8 +11,6 @@ import {
 } from "react-icons/fa";
 import profile from "./assets/profile.jpeg";
 
-import { FaDownload } from "react-icons/fa";
-
 import {
   SiSpringboot,
   SiPostgresql,
@@ -164,12 +162,12 @@ export default function App() {
         </p>
 
         <div className="flex flex-wrap gap-4 mt-10 justify-center">
-          <a
+<a
   href="/cv_safidy.pdf"
   download
-  className="px-8 py-4 rounded-2xl bg-cyan-500 hover:bg-cyan-400 transition text-black font-bold shadow-lg shadow-cyan-500/30 inline-flex items-center gap-2"
+  className="px-8 py-4 rounded-2xl bg-cyan-500 hover:bg-cyan-400 transition text-black font-bold shadow-lg shadow-cyan-500/30 inline-block"
 >
-  <FaDownload /> Télécharger CV
+  Télécharger CV
 </a>
 
           <a
