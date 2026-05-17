@@ -85,7 +85,7 @@ export default function App() {
     {
       title: "Suivi des vie de coupon",
       description:
-        "DCréation d'un application de suivi de vie de coupon d'argent",
+        "Création d'un application de suivi de vie de coupon d'argent",
       tech: "Spring Boot • React ",
       location: "YAS Madagascar"
     },
