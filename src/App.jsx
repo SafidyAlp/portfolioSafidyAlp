@@ -1,4 +1,3 @@
-import { useState } from "react";
 import {
   FaJava,
   FaReact,
@@ -30,23 +29,6 @@ import { TbBrandReactNative } from "react-icons/tb";
 import profile from "./assets/profile.jpeg";
 
 export default function App() {
-  const [showGitCommands, setShowGitCommands] = useState(false);
-  const [copied, setCopied] = useState(false);
-
-  const gitCommands = [
-    "git init",
-    "git add .",
-    'git commit -m "Initial portfolio commit"',
-    "git branch -M main",
-    "git remote add origin https://github.com/SafidyAlp/portfolio.git",
-    "git push -u origin main",
-  ];
-
-  const copyToClipboard = () => {
-    navigator.clipboard.writeText(gitCommands.join("\n"));
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2000);
-  };
 
   const skills = [
     { name: "Java", icon: <FaJava className="text-orange-500 text-6xl" />, category: "backend" },
@@ -156,7 +138,7 @@ export default function App() {
           <h2 className="text-5xl md:text-7xl font-extrabold">
             Full Stack
             <span className="block bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">
-              Java Developer
+              Developpeur Java
             </span>
           </h2>
 
@@ -194,41 +176,9 @@ export default function App() {
             className="px-8 py-4 rounded-2xl border border-cyan-500 text-cyan-400 hover:bg-cyan-500 hover:text-black transition inline-flex items-center gap-2"
           >
             <FaWhatsapp className="text-xl" />
-            Contact Me
+            Me contacter
           </a>
         </div>
-
-        {/* Git Commands Modal */}
-        {showGitCommands && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center px-4" onClick={() => setShowGitCommands(false)}>
-            <div className="absolute inset-0 bg-black/70 backdrop-blur-sm" />
-            <div className="relative bg-zinc-900 border border-white/20 rounded-2xl p-6 max-w-2xl w-full shadow-2xl" onClick={(e) => e.stopPropagation()}>
-              <h3 className="text-xl font-bold mb-4 flex items-center gap-2">
-                <FaGitAlt className="text-orange-400" />
-                Commandes Git pour push
-              </h3>
-              <div className="bg-black/50 rounded-xl p-4 font-mono text-sm">
-                {gitCommands.map((cmd, i) => (
-                  <div key={i} className="text-zinc-300">
-                    <span className="text-cyan-400">$</span> {cmd}
-                  </div>
-                ))}
-              </div>
-              <button
-                onClick={copyToClipboard}
-                className="mt-4 px-4 py-2 bg-gradient-to-r from-orange-500 to-red-500 rounded-lg text-sm font-medium hover:opacity-90 transition"
-              >
-                {copied ? "✓ Copié !" : "📋 Copier toutes les commandes"}
-              </button>
-              <button
-                onClick={() => setShowGitCommands(false)}
-                className="absolute top-4 right-4 text-zinc-400 hover:text-white text-xl"
-              >
-                ✕
-              </button>
-            </div>
-          </div>
-        )}
       </section>
 
       {/* About Section */}
