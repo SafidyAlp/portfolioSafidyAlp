@@ -60,7 +60,7 @@ export default function App() {
     {
       title: "Gestion de Réclamation",
       description: "Intégration d'une nouvelle service de réclamation dans une plateforme existante",
-      tech: ["Spring Boot", "React", "PostgreSQL"],
+      tech: ["Spring Boot", "React"],
       location: "YAS Madagascar",
       gradient: "from-cyan-500/20 to-blue-500/20",
     },
@@ -79,9 +79,9 @@ export default function App() {
       gradient: "from-orange-500/20 to-red-500/20",
     },
     {
-      title: "Backend d'une gestion d'association",
-      description: "Développement du côté backend d'une application web de gestion d'association",
-      tech: ["Java", "Spring Boot"],
+      title: "Microservices ",
+      description: "Développement d'une application web de gestion de vente avec des multiples services independantes",
+      tech: ["Java", "Spring Boot", "NodeJS", "ReactJS"],
       location: "Fianarantsoa",
       gradient: "from-purple-500/20 to-pink-500/20",
     },
