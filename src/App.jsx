@@ -214,7 +214,7 @@ export default function App() {
           <h3 className="text-4xl font-bold text-center mb-4 bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">
             Technologies & Competences
           </h3>
-          <p className="text-center text-zinc-400 mb-16">Les outils que j'utilise au quotidien</p>
+         
 
           {Object.entries(categories).map(([key, cat]) => (
             <div key={key} className="mb-12">
@@ -250,7 +250,6 @@ export default function App() {
           <h3 className="text-4xl font-bold text-center mb-4 bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">
             Projets Réalisés
           </h3>
-          <p className="text-center text-zinc-400 mb-16">Quelques réalisations récentes</p>
 
           <div className="grid md:grid-cols-2 gap-8">
             {projects.map((project, index) => (
