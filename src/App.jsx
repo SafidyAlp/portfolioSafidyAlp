@@ -186,7 +186,7 @@ export default function App() {
         <div className="max-w-5xl mx-auto">
           <div className="bg-gradient-to-br from-white/5 to-white/[0.02] backdrop-blur-xl border border-white/10 rounded-3xl p-10 shadow-2xl hover:border-cyan-400/30 transition-all duration-500">
             <h3 className="text-4xl font-bold mb-8 bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">
-              About Me
+              A propos de moi
             </h3>
             <p className="text-zinc-300 leading-8 text-lg">
               Je suis un développeur passionné spécialisé dans le développement
@@ -212,7 +212,7 @@ export default function App() {
       <section id="skills" className="px-6 md:px-20 py-24">
         <div className="max-w-7xl mx-auto">
           <h3 className="text-4xl font-bold text-center mb-4 bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">
-            Technologies & Skills
+            Technologies & Competences
           </h3>
           <p className="text-center text-zinc-400 mb-16">Les outils que j'utilise au quotidien</p>
 
@@ -248,7 +248,7 @@ export default function App() {
       <section id="projects" className="px-6 md:px-20 py-24">
         <div className="max-w-7xl mx-auto">
           <h3 className="text-4xl font-bold text-center mb-4 bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">
-            Featured Projects
+            Projets Réalisés
           </h3>
           <p className="text-center text-zinc-400 mb-16">Quelques réalisations récentes</p>
 
@@ -299,7 +299,7 @@ export default function App() {
         <div className="max-w-5xl mx-auto">
           <div className="bg-gradient-to-br from-white/5 to-white/[0.02] border border-white/10 backdrop-blur-xl rounded-3xl p-12 text-center shadow-2xl">
             <h3 className="text-4xl font-bold bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent mb-6">
-              Let's Connect
+              Restons en contact
             </h3>
 
             <p className="text-zinc-400 text-lg mb-12 leading-8">
@@ -356,7 +356,7 @@ export default function App() {
 
       {/* Footer */}
       <footer className="border-t border-white/10 py-8 text-center text-zinc-500 text-sm">
-        <p>© 2026 Safidy Developer Portfolio. All rights reserved.</p>
+        <p>© 2026 Safidy Developer Portfolio</p>
         <p className="mt-2 text-xs">Built with React & Tailwind CSS</p>
       </footer>
 
