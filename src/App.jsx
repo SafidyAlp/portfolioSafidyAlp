@@ -1,3 +1,4 @@
+import { useState } from "react";
 import {
   FaJava,
   FaReact,
@@ -8,9 +9,12 @@ import {
   FaGithub,
   FaEnvelope,
   FaWhatsapp,
+  FaArrowUp,
+  FaCode,
+  FaDatabase,
+  FaCloud,
+  FaTerminal,
 } from "react-icons/fa";
-import profile from "./assets/profile.jpeg";
-
 import {
   SiSpringboot,
   SiPostgresql,
@@ -18,242 +22,321 @@ import {
   SiHibernate,
   SiDjango,
   SiJavascript,
+  SiRedis,
+  SiMongodb,
 } from "react-icons/si";
+import { HiOutlineDocumentDownload } from "react-icons/hi";
+import { TbBrandReactNative } from "react-icons/tb";
+import profile from "./assets/profile.jpeg";
 
 export default function App() {
-  const skills = [
-    {
-      name: "Java",
-      icon: <FaJava className="text-orange-500 text-6xl" />,
-    },
-    {
-      name: "Spring Boot",
-      icon: <SiSpringboot className="text-green-500 text-6xl" />,
-    },
-    {
-      name: "React",
-      icon: <FaReact className="text-cyan-400 text-6xl" />,
-    },
-    {
-      name: "Node.js",
-      icon: <FaNodeJs className="text-green-400 text-6xl" />,
-    },
-    {
-      name: "PostgreSQL",
-      icon: <SiPostgresql className="text-blue-400 text-6xl" />,
-    },
-    {
-      name: "MySQL",
-      icon: <SiMysql className="text-blue-500 text-6xl" />,
-    },
-    {
-      name: "Docker",
-      icon: <FaDocker className="text-blue-400 text-6xl" />,
-    },
-    {
-      name: "Hibernate",
-      icon: <SiHibernate className="text-yellow-500 text-6xl" />,
-    },
-    {
-      name: "Django API",
-      icon: <SiDjango className="text-green-300 text-6xl" />,
-    },
-    {
-      name: "Android",
-      icon: <FaAndroid className="text-green-500 text-6xl" />,
-    },
-    {
-      name: "Git",
-      icon: <FaGitAlt className="text-orange-400 text-6xl" />,
-    },
-    {
-      name: "JavaScript",
-      icon: <SiJavascript className="text-yellow-400 text-6xl" />,
-    }
+  const [showGitCommands, setShowGitCommands] = useState(false);
+  const [copied, setCopied] = useState(false);
+
+  const gitCommands = [
+    "git init",
+    "git add .",
+    'git commit -m "Initial portfolio commit"',
+    "git branch -M main",
+    "git remote add origin https://github.com/SafidyAlp/portfolio.git",
+    "git push -u origin main",
   ];
+
+  const copyToClipboard = () => {
+    navigator.clipboard.writeText(gitCommands.join("\n"));
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
+  };
+
+  const skills = [
+    { name: "Java", icon: <FaJava className="text-orange-500 text-6xl" />, category: "backend" },
+    { name: "Spring Boot", icon: <SiSpringboot className="text-green-500 text-6xl" />, category: "backend" },
+    { name: "Hibernate", icon: <SiHibernate className="text-yellow-500 text-6xl" />, category: "backend" },
+    { name: "Node.js", icon: <FaNodeJs className="text-green-400 text-6xl" />, category: "backend" },
+    { name: "React", icon: <FaReact className="text-cyan-400 text-6xl" />, category: "frontend" },
+    { name: "JavaScript", icon: <SiJavascript className="text-yellow-400 text-6xl" />, category: "frontend" },
+     {name: "React Native", icon: <TbBrandReactNative className="text-cyan-400 text-6xl" />, category: "mobile" },
+    { name: "Android", icon: <FaAndroid className="text-green-500 text-6xl" />, category: "mobile" },
+    { name: "PostgreSQL", icon: <SiPostgresql className="text-blue-400 text-6xl" />, category: "database" },
+    { name: "MySQL", icon: <SiMysql className="text-blue-500 text-6xl" />, category: "database" },
+    { name: "MongoDB", icon: <SiMongodb className="text-green-600 text-6xl" />, category: "database" },
+    { name: "Redis", icon: <SiRedis className="text-red-500 text-6xl" />, category: "database" },
+    { name: "Docker", icon: <FaDocker className="text-blue-400 text-6xl" />, category: "devops" },
+    { name: "Git", icon: <FaGitAlt className="text-orange-400 text-6xl" />, category: "devops" },
+    { name: "Django", icon: <SiDjango className="text-green-300 text-6xl" />, category: "backend" },
+  ];
+
+  const categories = {
+    backend: { icon: <FaTerminal />, label: "Backend", color: "from-green-500 to-emerald-500" },
+    frontend: { icon: <FaCode />, label: "Frontend", color: "from-cyan-500 to-blue-500" },
+    mobile: { icon: <TbBrandReactNative />, label: "Mobile", color: "from-purple-500 to-pink-500" },
+    database: { icon: <FaDatabase />, label: "Database", color: "from-yellow-500 to-orange-500" },
+    devops: { icon: <FaCloud />, label: "DevOps", color: "from-indigo-500 to-purple-500" },
+  };
 
   const projects = [
     {
       title: "Gestion de Réclamation",
-      description:
-        "Intégration d'une nouvelle service de reclamation dans une plateforme existant",
-      tech: "Spring Boot • React • PostgreSQL",
-      location: "YAS Madagascar"
+      description: "Intégration d'une nouvelle service de réclamation dans une plateforme existante",
+      tech: ["Spring Boot", "React", "PostgreSQL"],
+      location: "YAS Madagascar",
+      gradient: "from-cyan-500/20 to-blue-500/20",
     },
     {
       title: "Suivi des vie de coupon",
-      description:
-        "Création d'un application de suivi de vie de coupon d'argent",
-      tech: "Spring Boot • React ",
-      location: "YAS Madagascar"
+      description: "Création d'une application de suivi de vie de coupon d'argent",
+      tech: ["Spring Boot", "React"],
+      location: "YAS Madagascar",
+      gradient: "from-emerald-500/20 to-teal-500/20",
     },
     {
       title: "Gestion de Suivi de vaccination",
-      description:
-        "Projet Application mobile pour suivre les périodes de vaccinations des zébus du Pharmashop.",
-      tech: "Java • Android Studio ",
-      location: "AVEMA Fianarantsoa"
+      description: "Application mobile pour suivre les périodes de vaccinations des zébus",
+      tech: ["Java", "Android Studio"],
+      location: "AVEMA Fianarantsoa",
+      gradient: "from-orange-500/20 to-red-500/20",
     },
     {
       title: "Backend d'une gestion d'association",
-      description:
-        "Developpement du coté backend d'une application web de gestion d'une association",
-      tech: "Java • Spring boot ",
-      location: "Fianarantsoa"
-    }
+      description: "Développement du côté backend d'une application web de gestion d'association",
+      tech: ["Java", "Spring Boot"],
+      location: "Fianarantsoa",
+      gradient: "from-purple-500/20 to-pink-500/20",
+    },
   ];
+
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
 
   return (
     <div className="min-h-screen bg-black text-white overflow-x-hidden">
-      {/* Background Blur */}
+      {/* Background Animation */}
       <div className="fixed inset-0 -z-10">
-        <div className="absolute top-0 left-0 w-96 h-96 bg-cyan-500/20 blur-3xl rounded-full" />
-        <div className="absolute bottom-0 right-0 w-96 h-96 bg-blue-700/20 blur-3xl rounded-full" />
+        <div className="absolute top-0 left-0 w-96 h-96 bg-cyan-500/30 blur-[100px] rounded-full animate-pulse" />
+        <div className="absolute bottom-0 right-0 w-96 h-96 bg-blue-700/30 blur-[100px] rounded-full animate-pulse delay-1000" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-purple-500/20 blur-[100px] rounded-full animate-pulse delay-700" />
       </div>
 
       {/* Navbar */}
-      <header className="flex items-center justify-between px-8 py-6 border-b border-white/10 backdrop-blur-md sticky top-0 z-50 bg-black/40">
-        <h1 className="text-2xl font-bold tracking-widest">
-          SAFIDY<span className="text-cyan-400">.DEV</span>
-        </h1>
+      <header className="flex items-center justify-between px-8 py-6 border-b border-white/10 backdrop-blur-xl sticky top-0 z-50 bg-black/50">
+        <div className="group cursor-pointer" onClick={scrollToTop}>
+          <h1 className="text-2xl font-bold tracking-widest bg-gradient-to-r from-white to-cyan-400 bg-clip-text text-transparent">
+            SAFIDY<span className="text-cyan-400">.DEV</span>
+          </h1>
+          <div className="h-0.5 w-0 group-hover:w-full bg-cyan-400 transition-all duration-300" />
+        </div>
 
         <nav className="hidden md:flex gap-8 text-sm uppercase tracking-wider">
-          <a href="#about" className="hover:text-cyan-400 transition">
-            About
-          </a>
-
-          <a href="#skills" className="hover:text-cyan-400 transition">
-            Skills
-          </a>
-
-          <a href="#projects" className="hover:text-cyan-400 transition">
-            Projects
-          </a>
-
-          <a href="#contact" className="hover:text-cyan-400 transition">
-            Contact
-          </a>
+          {["About", "Skills", "Projects", "Contact"].map((item) => (
+            <a
+              key={item}
+              href={`#${item.toLowerCase()}`}
+              className="relative group hover:text-cyan-400 transition"
+            >
+              {item}
+              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-cyan-400 group-hover:w-full transition-all duration-300" />
+            </a>
+          ))}
         </nav>
       </header>
 
-      {/* Hero */}
-      <section className="min-h-[90vh] flex flex-col items-center justify-center text-center px-6">
-        <div className="w-40 h-40 rounded-full bg-gradient-to-br from-cyan-400 to-blue-700 p-1 shadow-2xl shadow-cyan-500/30">
-          <div className="w-full h-full rounded-full overflow-hidden bg-zinc-900 flex items-center justify-center">
-  <img
-    src={profile}
-    alt="profile"
-    className="w-full h-full object-cover"
-  />
-</div>
+      {/* Hero Section */}
+      <section className="min-h-[90vh] flex flex-col items-center justify-center text-center px-6 relative">
+        {/* Animated Border Profile */}
+        <div className="relative">
+          <div className="absolute inset-0 rounded-full bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-500 animate-spin-slow" />
+          <div className="absolute inset-[3px] rounded-full bg-black" />
+          <div className="w-40 h-40 rounded-full relative overflow-hidden">
+            <img src={profile} alt="profile" className="w-full h-full object-cover" />
+          </div>
         </div>
 
-        <h2 className="text-5xl md:text-7xl font-extrabold mt-10 leading-tight">
-          Full Stack
-          <span className="block text-cyan-400">
-            Java Developer
-          </span>
-        </h2>
+        <div className="mt-10 space-y-4">
+          <h2 className="text-5xl md:text-7xl font-extrabold">
+            Full Stack
+            <span className="block bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">
+              Java Developer
+            </span>
+          </h2>
+
+          <div className="flex justify-center gap-3">
+            {["Backend", "Frontend", "Mobile", "DevOps"].map((tag) => (
+              <span
+                key={tag}
+                className="px-3 py-1 text-xs rounded-full bg-white/10 border border-white/20 backdrop-blur-sm"
+              >
+                {tag}
+              </span>
+            ))}
+          </div>
+        </div>
 
         <p className="max-w-2xl text-zinc-400 mt-6 text-lg leading-relaxed">
-          Passionné par le développement backend, frontend, mobile
-          et DevOps. Je développe des applications modernes avec
-          Java, Spring Boot, React, Node.js et PostgreSQL.
+          Passionné par le développement backend, frontend, mobile et DevOps.
+          Je développe des applications modernes avec Java, Spring Boot, React,
+          Node.js et PostgreSQL.
         </p>
 
         <div className="flex flex-wrap gap-4 mt-10 justify-center">
-<a
-  href="/cv_safidy.pdf"
-  download
-  className="px-8 py-4 rounded-2xl bg-cyan-500 hover:bg-cyan-400 transition text-black font-bold shadow-lg shadow-cyan-500/30 inline-block"
->
-  Télécharger CV
-</a>
+          <a
+            href="/cv_safidy.pdf"
+            download
+            className="group px-8 py-4 rounded-2xl bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-600 hover:to-blue-600 transition text-black font-bold shadow-lg shadow-cyan-500/30 inline-flex items-center gap-2"
+          >
+            <HiOutlineDocumentDownload className="text-xl group-hover:animate-bounce" />
+            Télécharger CV
+          </a>
 
           <a
-  href="https://wa.me/261349764038"
-  target="_blank"
-  className="px-8 py-4 rounded-2xl border border-cyan-500 text-cyan-400 hover:bg-cyan-500 hover:text-black transition inline-block"
->
-  Contact Me
-</a>
+            href="https://wa.me/261349764038"
+            target="_blank"
+            className="px-8 py-4 rounded-2xl border border-cyan-500 text-cyan-400 hover:bg-cyan-500 hover:text-black transition inline-flex items-center gap-2"
+          >
+            <FaWhatsapp className="text-xl" />
+            Contact Me
+          </a>
         </div>
-      </section>
 
-      {/* About */}
-      <section id="about" className="px-6 md:px-20 py-24">
-        <div className="max-w-5xl mx-auto bg-white/5 backdrop-blur-xl border border-white/10 rounded-3xl p-10 shadow-2xl">
-          <h3 className="text-4xl font-bold mb-8 text-cyan-400">
-            About Me
-          </h3>
-
-          <p className="text-zinc-300 leading-8 text-lg">
-            Je suis un développeur passionné spécialisé dans le
-            développement d’applications web, mobile et backend.
-            J’aime concevoir des architectures modernes, créer des
-            interfaces élégantes et déployer des solutions robustes
-            avec Docker.
-          </p>
-        </div>
-      </section>
-
-      {/* Skills */}
-      <section id="skills" className="px-6 md:px-20 py-24">
-        <div className="max-w-7xl mx-auto">
-          <h3 className="text-4xl font-bold text-center mb-16 text-cyan-400">
-            Technologies & Skills
-          </h3>
-
-          <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-4 gap-6">
-            {skills.map((skill, index) => (
-              <div
-                key={index}
-                className="bg-white/5 border border-white/10 rounded-3xl p-8 flex flex-col items-center justify-center hover:scale-110 hover:-translate-y-2 hover:border-cyan-400 transition duration-300 backdrop-blur-xl shadow-xl"
-              >
-                <div className="mb-4">
-                  {skill.icon}
-                </div>
-
-                <p className="text-center font-semibold text-zinc-200">
-                  {skill.name}
-                </p>
+        {/* Git Commands Modal */}
+        {showGitCommands && (
+          <div className="fixed inset-0 z-50 flex items-center justify-center px-4" onClick={() => setShowGitCommands(false)}>
+            <div className="absolute inset-0 bg-black/70 backdrop-blur-sm" />
+            <div className="relative bg-zinc-900 border border-white/20 rounded-2xl p-6 max-w-2xl w-full shadow-2xl" onClick={(e) => e.stopPropagation()}>
+              <h3 className="text-xl font-bold mb-4 flex items-center gap-2">
+                <FaGitAlt className="text-orange-400" />
+                Commandes Git pour push
+              </h3>
+              <div className="bg-black/50 rounded-xl p-4 font-mono text-sm">
+                {gitCommands.map((cmd, i) => (
+                  <div key={i} className="text-zinc-300">
+                    <span className="text-cyan-400">$</span> {cmd}
+                  </div>
+                ))}
               </div>
-            ))}
+              <button
+                onClick={copyToClipboard}
+                className="mt-4 px-4 py-2 bg-gradient-to-r from-orange-500 to-red-500 rounded-lg text-sm font-medium hover:opacity-90 transition"
+              >
+                {copied ? "✓ Copié !" : "📋 Copier toutes les commandes"}
+              </button>
+              <button
+                onClick={() => setShowGitCommands(false)}
+                className="absolute top-4 right-4 text-zinc-400 hover:text-white text-xl"
+              >
+                ✕
+              </button>
+            </div>
+          </div>
+        )}
+      </section>
+
+      {/* About Section */}
+      <section id="about" className="px-6 md:px-20 py-24">
+        <div className="max-w-5xl mx-auto">
+          <div className="bg-gradient-to-br from-white/5 to-white/[0.02] backdrop-blur-xl border border-white/10 rounded-3xl p-10 shadow-2xl hover:border-cyan-400/30 transition-all duration-500">
+            <h3 className="text-4xl font-bold mb-8 bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">
+              About Me
+            </h3>
+            <p className="text-zinc-300 leading-8 text-lg">
+              Je suis un développeur passionné spécialisé dans le développement
+              d'applications web, mobile et backend. J'aime concevoir des
+              architectures modernes, créer des interfaces élégantes et déployer
+              des solutions robustes avec Docker.
+            </p>
+            <div className="mt-6 flex gap-4 text-cyan-400">
+              <div className="flex items-center gap-2">
+                <div className="w-2 h-2 rounded-full bg-cyan-400" />
+                <span>3+ ans d'expérience</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <div className="w-2 h-2 rounded-full bg-blue-400" />
+                <span>10+ projets réalisés</span>
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Projects */}
+      {/* Skills Section with Categories */}
+      <section id="skills" className="px-6 md:px-20 py-24">
+        <div className="max-w-7xl mx-auto">
+          <h3 className="text-4xl font-bold text-center mb-4 bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">
+            Technologies & Skills
+          </h3>
+          <p className="text-center text-zinc-400 mb-16">Les outils que j'utilise au quotidien</p>
+
+          {Object.entries(categories).map(([key, cat]) => (
+            <div key={key} className="mb-12">
+              <div className={`flex items-center gap-2 mb-6 text-xl font-semibold bg-gradient-to-r ${cat.color} bg-clip-text text-transparent`}>
+                {cat.icon}
+                <span>{cat.label}</span>
+              </div>
+              <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-4">
+                {skills
+                  .filter((s) => s.category === key)
+                  .map((skill, index) => (
+                    <div
+                      key={index}
+                      className="group bg-white/5 border border-white/10 rounded-2xl p-6 flex flex-col items-center justify-center hover:scale-105 hover:-translate-y-1 hover:border-cyan-400 transition-all duration-300 backdrop-blur-xl hover:shadow-xl hover:shadow-cyan-500/20"
+                    >
+                      <div className="mb-3 group-hover:scale-110 transition-transform duration-300">
+                        {skill.icon}
+                      </div>
+                      <p className="text-center font-semibold text-zinc-200 text-sm">
+                        {skill.name}
+                      </p>
+                    </div>
+                  ))}
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* Projects Section */}
       <section id="projects" className="px-6 md:px-20 py-24">
         <div className="max-w-7xl mx-auto">
-          <h3 className="text-4xl font-bold text-center mb-16 text-cyan-400">
+          <h3 className="text-4xl font-bold text-center mb-4 bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">
             Featured Projects
           </h3>
+          <p className="text-center text-zinc-400 mb-16">Quelques réalisations récentes</p>
 
           <div className="grid md:grid-cols-2 gap-8">
             {projects.map((project, index) => (
               <div
                 key={index}
-                className="bg-gradient-to-br from-zinc-900 to-zinc-950 border border-white/10 rounded-3xl p-8 hover:border-cyan-400 transition duration-300 shadow-2xl"
+                className="group relative bg-gradient-to-br from-zinc-900 to-zinc-950 border border-white/10 rounded-3xl overflow-hidden hover:border-cyan-400/50 transition-all duration-500 hover:-translate-y-2"
               >
-                <div className="h-52 rounded-2xl bg-gradient-to-br from-cyan-500/20 to-blue-700/20 border border-white/10 mb-6 flex items-center justify-center text-6xl">
-                  💻
-                </div>
+                {/* Animated gradient background */}
+                <div className={`absolute inset-0 bg-gradient-to-br ${project.gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-500`} />
 
-                <h4 className="text-2xl font-bold mb-4">
-                  {project.title}
-                </h4>
+                <div className="relative p-8">
+                  <div className="h-52 rounded-2xl bg-gradient-to-br from-cyan-500/20 to-blue-700/20 border border-white/10 mb-6 flex items-center justify-center text-7xl group-hover:scale-105 transition-transform duration-500">
+                    <div className="animate-float">💻</div>
+                  </div>
 
-                <p className="text-zinc-400 leading-7 mb-6">
-                  {project.description}
-                </p>
+                  <h4 className="text-2xl font-bold mb-3 group-hover:text-cyan-400 transition">
+                    {project.title}
+                  </h4>
 
-                <div className="inline-block px-4 py-2 rounded-full bg-cyan-500/10 border border-cyan-500/20 text-cyan-300 text-sm">
-                  {project.tech}
-                </div>
+                  <p className="text-zinc-400 leading-7 mb-6">{project.description}</p>
 
-                <div className="inline-block px-4 py-2 rounded-full bg-cyan-500/10 border border-cyan-500/20 text-cyan-300 text-sm ml-[50px]">
-                  {project.location}
+                  <div className="flex flex-wrap gap-2 mb-4">
+                    {project.tech.map((t, i) => (
+                      <span
+                        key={i}
+                        className="px-3 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/20 text-cyan-300 text-xs"
+                      >
+                        {t}
+                      </span>
+                    ))}
+                  </div>
+
+                  <div className="inline-flex items-center gap-2 text-zinc-500 text-sm">
+                    <FaGithub className="text-cyan-400" />
+                    {project.location}
+                  </div>
                 </div>
               </div>
             ))}
@@ -261,56 +344,92 @@ export default function App() {
         </div>
       </section>
 
-      {/* Contact */}
+      {/* Contact Section */}
       <section id="contact" className="px-6 md:px-20 py-24">
-        <div className="max-w-4xl mx-auto bg-white/5 border border-white/10 backdrop-blur-xl rounded-3xl p-10 text-center shadow-2xl">
-          <h3 className="text-4xl font-bold text-cyan-400 mb-8">
-            Contact
-          </h3>
+        <div className="max-w-5xl mx-auto">
+          <div className="bg-gradient-to-br from-white/5 to-white/[0.02] border border-white/10 backdrop-blur-xl rounded-3xl p-12 text-center shadow-2xl">
+            <h3 className="text-4xl font-bold bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent mb-6">
+              Let's Connect
+            </h3>
 
-          <p className="text-zinc-400 text-lg mb-10 leading-8">
-            Disponible pour des projets, collaborations et
-            opportunités de stage ou développement.
-          </p>
+            <p className="text-zinc-400 text-lg mb-12 leading-8">
+              Disponible pour des projets, collaborations et opportunités
+              de stage ou développement. N'hésitez pas à me contacter !
+            </p>
 
-          <div className="grid md:grid-cols-3 gap-6">
-            <div className="bg-black/30 rounded-2xl p-6 border border-white/10">
-              <FaEnvelope className="text-4xl mx-auto mb-4 text-cyan-400" />
+            <div className="grid md:grid-cols-3 gap-6">
+              <div className="group bg-black/30 rounded-2xl p-6 border border-white/10 hover:border-cyan-400/50 transition-all hover:-translate-y-1">
+                <div className="w-12 h-12 mx-auto mb-4 rounded-full bg-cyan-500/20 flex items-center justify-center group-hover:bg-cyan-500/40 transition">
+                  <FaEnvelope className="text-2xl text-cyan-400" />
+                </div>
+                <p className="text-zinc-400 text-sm">Email</p>
+                <p className="font-semibold text-sm break-all">
+                  randrianomentsoasafidy@gmail.com
+                </p>
+              </div>
 
-              <p className="text-zinc-400">Email</p>
+              <a
+                href="https://github.com/SafidyAlp"
+                target="_blank"
+                className="group bg-black/30 rounded-2xl p-6 border border-white/10 hover:border-cyan-400/50 transition-all hover:-translate-y-1 block"
+              >
+                <div className="w-12 h-12 mx-auto mb-4 rounded-full bg-cyan-500/20 flex items-center justify-center group-hover:bg-cyan-500/40 transition">
+                  <FaGithub className="text-2xl text-cyan-400" />
+                </div>
+                <p className="text-zinc-400 text-sm">GitHub</p>
+                <p className="font-semibold text-sm">github.com/SafidyAlp</p>
+              </a>
 
-              <p className="font-semibold">
-                randrianomentsoasafidy@gmail.com
-              </p>
-            </div>
-
-            <div className="bg-black/30 rounded-2xl p-6 border border-white/10">
-              <FaGithub className="text-4xl mx-auto mb-4 text-cyan-400" />
-
-              <p className="text-zinc-400">GitHub</p>
-
-              <p className="font-semibold">
-                github.com/SafidyAlp
-              </p>
-            </div>
-
-            <div className="bg-black/30 rounded-2xl p-6 border border-white/10">
-              <FaWhatsapp className="text-4xl mx-auto mb-4 text-cyan-400" />
-
-              <p className="text-zinc-400">WhatsApp</p>
-
-              <p className="font-semibold">
-                +261 34 97 640 38
-              </p>
+              <a
+                href="https://wa.me/261349764038"
+                target="_blank"
+                className="group bg-black/30 rounded-2xl p-6 border border-white/10 hover:border-cyan-400/50 transition-all hover:-translate-y-1 block"
+              >
+                <div className="w-12 h-12 mx-auto mb-4 rounded-full bg-cyan-500/20 flex items-center justify-center group-hover:bg-cyan-500/40 transition">
+                  <FaWhatsapp className="text-2xl text-cyan-400" />
+                </div>
+                <p className="text-zinc-400 text-sm">WhatsApp</p>
+                <p className="font-semibold text-sm">+261 34 97 640 38</p>
+              </a>
             </div>
           </div>
         </div>
       </section>
 
+      {/* Scroll to Top Button */}
+      <button
+        onClick={scrollToTop}
+        className="fixed bottom-8 right-8 z-50 w-12 h-12 rounded-full bg-gradient-to-r from-cyan-500 to-blue-500 text-white flex items-center justify-center shadow-lg shadow-cyan-500/30 hover:scale-110 transition-all duration-300"
+      >
+        <FaArrowUp />
+      </button>
+
       {/* Footer */}
       <footer className="border-t border-white/10 py-8 text-center text-zinc-500 text-sm">
-        © 2026 Safidy Developer Portfolio. All rights reserved.
+        <p>© 2026 Safidy Developer Portfolio. All rights reserved.</p>
+        <p className="mt-2 text-xs">Built with React & Tailwind CSS</p>
       </footer>
+
+      <style jsx>{`
+        @keyframes spin-slow {
+          from {
+            transform: rotate(0deg);
+          }
+          to {
+            transform: rotate(360deg);
+          }
+        }
+        .animate-spin-slow {
+          animation: spin-slow 8s linear infinite;
+        }
+        @keyframes float {
+          0%, 100% { transform: translateY(0px); }
+          50% { transform: translateY(-10px); }
+        }
+        .animate-float {
+          animation: float 3s ease-in-out infinite;
+        }
+      `}</style>
     </div>
   );
 }
