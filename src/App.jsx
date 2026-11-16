@@ -197,7 +197,7 @@ export default function App() {
             <div className="mt-6 flex gap-4 text-cyan-400">
               <div className="flex items-center gap-2">
                 <div className="w-2 h-2 rounded-full bg-cyan-400" />
-                <span>3+ ans d'expérience</span>
+                <span>2+ ans d'expérience</span>
               </div>
               <div className="flex items-center gap-2">
                 <div className="w-2 h-2 rounded-full bg-blue-400" />
