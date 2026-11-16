@@ -42,7 +42,6 @@ export default function App() {
     { name: "PostgreSQL", icon: <SiPostgresql className="text-blue-400 text-6xl" />, category: "database" },
     { name: "MySQL", icon: <SiMysql className="text-blue-500 text-6xl" />, category: "database" },
     { name: "MongoDB", icon: <SiMongodb className="text-green-600 text-6xl" />, category: "database" },
-    { name: "Redis", icon: <SiRedis className="text-red-500 text-6xl" />, category: "database" },
     { name: "Docker", icon: <FaDocker className="text-blue-400 text-6xl" />, category: "devops" },
     { name: "Git", icon: <FaGitAlt className="text-orange-400 text-6xl" />, category: "devops" },
     { name: "Django", icon: <SiDjango className="text-green-300 text-6xl" />, category: "backend" },
